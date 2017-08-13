@@ -1,0 +1,56 @@
+pagination-controls /deep/ .ng2-pagination li,
+li.disabled,
+li.current {
+    font-size: 14px !important;
+    border: 1px solid #ddd !important;
+    margin: 0 !important;
+}
+
+pagination-controls /deep/ .ng2-pagination li {
+    background: #FFF !important;
+    padding: 5px;
+}
+
+pagination-controls /deep/ .ng2-pagination li.disabled {
+    background: #FFF !important;
+    padding: 7px !important;
+}
+
+pagination-controls /deep/ .ng2-pagination li.current {
+    background: #337ab7 !important;
+    color: #FFF;
+    padding: 8px !important;
+}
+
+pagination-controls /deep/ .ng2-pagination li:hover {
+    background: #e6e6e6 !important;
+    padding: 5px;
+}
+
+pagination-controls /deep/ .ng2-pagination li.pagination-next {
+    border-radius: 0 7px 7px 0 !important;
+}
+
+pagination-controls /deep/ .ng2-pagination li.pagination-previous {
+    border-radius: 7px 0 0 7px !important;
+}
+
+pagination-controls /deep/ .ng2-pagination li.disabled:hover {
+    background: #FFF !important;
+    padding: 7px !important;
+}
+
+pagination-controls /deep/ .ng2-pagination li.current:hover {
+    background: #337ab7 !important;
+    color: #FFF;
+    padding: 8px !important;
+}
+
+pagination-controls /deep/ .ng2-pagination a {
+    font-size: 14px !important;
+    color: #337ab7 !important;
+}
+
+pagination-controls /deep/ .ng2-pagination a:hover {
+    text-decoration: none;
+}
