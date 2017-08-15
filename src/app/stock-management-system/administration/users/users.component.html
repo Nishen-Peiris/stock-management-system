@@ -1,0 +1,90 @@
+<div class="jumbotron"
+     style="background-color: transparent; padding-bottom: 0px !important; margin-bottom: 0px !important;">
+  <div class="row">
+    <div class="row">
+      <div id="main-container-team" class="col-sm-12">
+        <div class="col-sm-12">
+          <div class="col-sm-12" style="padding-bottom: 50px">
+            <!-------------------- Add user form -------------------->
+            <form (ngSubmit)="onSubmitTeam()">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <b>Add user</b>
+                </div>
+                <div class="panel-body">
+                  <div class="col-sm-12">
+                    <table class="table panel-table">
+                      <tr>
+                        <td style="border-top: none; width: 30%">
+                          <div>
+                            <h5><b>First Name:</b></h5>
+                          </div>
+                          <div>
+                            <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName"
+                                   required="required">
+                          </div>
+                        </td>
+                        <td style="width: 5%; border-top: none"></td>
+                        <td style="border-top: none; width: 30%">
+                          <div>
+                            <h5><b>Last Name:</b></h5>
+                          </div>
+                          <div>
+                            <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName"
+                                   required="required">
+                          </div>
+                        </td>
+                        <td style="width: 5%; border-top: none"></td>
+                        <td style="border-top: none; width: 30%">
+                          <div>
+                            <h5><b>Phone number:</b></h5>
+                          </div>
+                          <div>
+                            <input type="text" class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber"
+                                   required="required">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border-top: none; width: 30%">
+                          <div>
+                            <h5><b>email:</b></h5>
+                          </div>
+                          <div>
+                            <input type="email" class="form-control" [(ngModel)]="email" name="email"
+                                   required="required">
+                          </div>
+                        </td>
+                        <td style="width: 5%; border-top: none"></td>
+                        <td style="border-top: none; width: 30%">
+                          <div>
+                            <h5><b>User type:</b></h5>
+                          </div>
+                          <div>
+                            <select [(ngModel)]="userTypes" name="userTypes" style="width: 100%; height: 35px"
+                                    required="required">
+                              <option *ngFor="let userType of userTypes">{{userType}}</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td style="width: 5%; border-top: none"></td>
+                        <td style="width: 30%; border-top: none"></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="form-group ">
+                    <div class="col-sm-12">
+                      <button class="btn btn-success update-job pull-right col-sm-1"><i
+                        class="fa fa-floppy-o" style="padding-right: 8px"></i><b>Save</b>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

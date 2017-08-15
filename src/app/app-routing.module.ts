@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AllPatientsComponent} from './stock-management-system/administration/users/all-patients.component';
+import {UsersComponent} from './stock-management-system/administration/users/users.component';
 
 const routes: Routes = [
-  {path: 'all-patients', component: AllPatientsComponent}
+  {path: 'users', component: UsersComponent}
 ];
 
 @NgModule({
