@@ -5,11 +5,11 @@
       <div id="main-container-team" class="col-sm-12">
         <div class="col-sm-12">
           <div class="col-sm-12" style="padding-bottom: 50px">
-            <!-------------------- Add user form -------------------->
+            <!-------------------- Add admin form -------------------->
             <form (ngSubmit)="onSubmitTeam()">
               <div class="panel panel-info">
                 <div class="panel-heading">
-                  <b>Add user</b>
+                  <b>Add admin</b>
                 </div>
                 <div class="panel-body">
                   <div class="col-sm-12">
@@ -56,17 +56,7 @@
                           </div>
                         </td>
                         <td style="width: 5%; border-top: none"></td>
-                        <td style="border-top: none; width: 30%">
-                          <div>
-                            <h5><b>User type:</b></h5>
-                          </div>
-                          <div>
-                            <select [(ngModel)]="userTypes" name="userTypes" style="width: 100%; height: 35px"
-                                    required="required">
-                              <option *ngFor="let userType of userTypes">{{userType}}</option>
-                            </select>
-                          </div>
-                        </td>
+                        <td style="border-top: none; width: 30%"></td>
                         <td style="width: 5%; border-top: none"></td>
                         <td style="width: 30%; border-top: none"></td>
                       </tr>
