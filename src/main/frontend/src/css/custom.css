@@ -635,7 +635,6 @@ hr {
 
 .home-page {
   box-shadow: inset 0px 0px 400px rgba(51, 122, 183, 0.06);
-  background: url(../img/time.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -643,7 +642,6 @@ hr {
 }
 
 .under-construction {
-  background: url(../img/under_construction.gif) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

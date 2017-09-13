@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
@@ -10,8 +10,13 @@ import {CategoriesComponent} from './stock-management-system/administration/cate
 import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
-  declarations: [AppComponent, UsersComponent, ProductsComponent, CategoriesComponent],
+  declarations: [
+    AppComponent, UsersComponent, ProductsComponent, CategoriesComponent
+  ],
+  imports: [
+    BrowserModule, AppRoutingModule, FormsModule
+  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

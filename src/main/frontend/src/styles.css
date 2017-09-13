@@ -1,3 +1,9 @@
+@import "bootstrap/css/bootstrap.min.css";
+@import "css/custom.css";
+@import "css/sb-admin-2.css";
+@import "css/select.css";
+@import "css/sidebar.css";
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
