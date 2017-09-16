@@ -1,11 +1,13 @@
 package com.nishenpeiris.StockManagementSystem.controller;
 
 import com.nishenpeiris.StockManagementSystem.Category;
+import com.nishenpeiris.StockManagementSystem.CategoryNameAlreadyInUseException;
 import com.nishenpeiris.StockManagementSystem.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -20,38 +22,45 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @RequestMapping(value = "/add", method = POST)
-    public ResponseEntity<?> addCategory(Category category) {
+    @RequestMapping(method = GET)
+    public ResponseEntity<?> getCategories() {
+        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        return new ResponseEntity<Object>("LLLLLLLLLLLLLLLLLLLLLLL", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = POST)
+    public ResponseEntity<?> create(@RequestBody Category category) {
         try {
             categoryRepository.add(category);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception ex) {
+        } catch (CategoryNameAlreadyInUseException e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @RequestMapping(value = "/delete", method = DELETE)
-    public ResponseEntity<?> removeCategory(Category category) {
+    @RequestMapping(method = PUT)
+    public ResponseEntity<?> update(Category category) {
+        Category returnedCategory = null;
+        try {
+            categoryRepository.update(category);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if (returnedCategory == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(returnedCategory, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = DELETE)
+    public ResponseEntity<?> delete(Category category) {
         try {
             categoryRepository.remove(category);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @RequestMapping(value = "/update", method = POST)
-    public ResponseEntity<?> updateCategory(Category category) {
-        try {
-            categoryRepository.update(category);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "/get", method = GET)
-    public ResponseEntity<?> getCategories() {
-        return null;
     }
 }

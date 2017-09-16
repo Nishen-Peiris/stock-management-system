@@ -1,11 +1,14 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {UsersComponent} from './stock-management-system/administration/users/users.component';
 import {ProductsComponent} from './stock-management-system/administration/products/products.component';
 import {CategoriesComponent} from './stock-management-system/administration/categories/categories.component';
+
+import {CategoriesService} from './stock-management-system/administration/categories/categories.service';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -14,9 +17,9 @@ import {AppRoutingModule} from './app-routing.module';
     AppComponent, UsersComponent, ProductsComponent, CategoriesComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, FormsModule
+    BrowserModule, AppRoutingModule, FormsModule, HttpModule
   ],
-  providers: [],
+  providers: [CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

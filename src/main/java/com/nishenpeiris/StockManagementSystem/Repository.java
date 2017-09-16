@@ -3,11 +3,11 @@ package com.nishenpeiris.StockManagementSystem;
 import java.util.List;
 
 public interface Repository<T> {
-    boolean add(T item);
+    void add(T item) throws Exception;
 
-    boolean remove(T item);
+    void remove(T item) throws Exception;
 
-    boolean update(T item);
+    void update(T item) throws Exception;
 
-    List<T> query(HibernateSpecification specification);
+    List<T> query(HibernateSpecification specification) throws Exception;
 }

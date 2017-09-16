@@ -1,8 +1,7 @@
 package com.nishenpeiris.StockManagementSystem.repository;
 
-import com.nishenpeiris.StockManagementSystem.Category;
-import com.nishenpeiris.StockManagementSystem.HibernateSpecification;
-import com.nishenpeiris.StockManagementSystem.Repository;
+import com.nishenpeiris.StockManagementSystem.*;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,54 +20,55 @@ public class CategoryRepository implements Repository<Category> {
     }
 
     @Override
-    public boolean add(Category item) {
+    public void add(Category item) throws Exception {
         Session session = sessionFactory.openSession();
-        Long itemID = null;
+        HibernateSpecification specification = new CategorySpecificationByName(item.getName());
+        List<Category> list = query(specification);
+        if (!list.isEmpty()) {
+            System.out.println("Failed to save category: category name - " + item.getName() + " already in use");
+            throw new CategoryNameAlreadyInUseException();
+        }
         try {
-            itemID = (Long) session.save(item);
+            session.save(item);
+            System.out.println("Saved Category {" + item.getId() + " " + item.getName() + "}.");
         } catch (HibernateException ex) {
-            ex.printStackTrace();
+            System.out.println("Failed to save Category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
+            throw ex;
         } finally {
             session.close();
         }
-        if (itemID != null) {
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public boolean remove(Category item) {
+    public void remove(Category item) {
         Session session = sessionFactory.openSession();
-        boolean done = false;
         try {
             session.delete(item);
-            done = true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
-        return done;
     }
 
     @Override
-    public boolean update(Category item) {
+    public void update(Category item) {
         Session session = sessionFactory.openSession();
-        boolean done = false;
         try {
             session.update(item);
-            done = true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
-        return done;
+//        return null;
     }
 
     @Override
     public List<Category> query(HibernateSpecification specification) {
-        return null;
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(Category.class);
+        criteria.add(specification.toCriteria());
+        return criteria.list();
     }
 }
