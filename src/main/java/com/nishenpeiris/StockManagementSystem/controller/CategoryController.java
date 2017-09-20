@@ -24,8 +24,11 @@ public class CategoryController {
 
     @RequestMapping(method = GET)
     public ResponseEntity<?> getCategories() {
-        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-        return new ResponseEntity<Object>("LLLLLLLLLLLLLLLLLLLLLLL", HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(categoryRepository.query(null), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(method = POST)

@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +69,10 @@ public class CategoryRepository implements Repository<Category> {
     public List<Category> query(HibernateSpecification specification) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(Category.class);
-        criteria.add(specification.toCriteria());
+        if (specification != null) {
+            criteria.add(specification.toCriteria());
+        }
+        criteria.addOrder(Order.asc("name"));
         return criteria.list();
     }
 }
