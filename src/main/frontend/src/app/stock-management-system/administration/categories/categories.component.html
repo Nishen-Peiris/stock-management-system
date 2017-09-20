@@ -45,6 +45,9 @@
             <table class="table table-striped" [mfData]="categories" #mf="mfDataTable" [mfRowsOnPage]="10">
               <thead>
               <tr>
+                <th width="75px">
+                  Actions
+                </th>
                 <th>
                   <mfDefaultSorter by="name">Category name</mfDefaultSorter>
                 </th>
@@ -52,6 +55,10 @@
               </thead>
               <tbody style="background-color: white">
               <tr *ngFor="let category of mf.data">
+                <td>
+                  <i style="padding-right: 15px" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </td>
                 <td>{{category.name}}</td>
               </tr>
               </tbody>
