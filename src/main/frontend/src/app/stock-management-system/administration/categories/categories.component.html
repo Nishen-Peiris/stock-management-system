@@ -48,7 +48,8 @@
               </div>
             </form>
             <!-------------------- Date table -------------------->
-            <table class="table table-striped" [mfData]="categories" #mf="mfDataTable" [mfRowsOnPage]="10">
+            <table class="table table-striped" #mf="mfDataTable" [mfData]="categories" [mfRowsOnPage]="rowsOnPage"
+                   [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
               <thead>
               <tr>
                 <th width="75px">
@@ -69,6 +70,13 @@
                 <td>{{category.name}}</td>
               </tr>
               </tbody>
+              <tfoot style="background: white; padding-bottom: 0; padding-top: 0; text-align: center">
+              <tr>
+                <td colspan="2">
+                  <mfBootstrapPaginator [rowsOnPageSet]="rowsOnPage"></mfBootstrapPaginator>
+                </td>
+              </tr>
+              </tfoot>
             </table>
           </div>
         </div>

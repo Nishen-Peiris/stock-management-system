@@ -10,6 +10,9 @@ export class CategoriesComponent implements OnInit {
   createMode: boolean;
   categories: Category[];
   category: Category;
+  rowsOnPage = 10;
+  sortBy = "name";
+  sortOrder = "asc";
 
   constructor(private categoriesService: CategoriesService) {
 

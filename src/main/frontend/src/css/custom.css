@@ -1274,6 +1274,10 @@ button, .panel, table, .input-group, .navbar-fixed-top {
   background-color: rgba(149, 211, 255, 0.6);
 }
 
+.table tfoot:hover td {
+  background-color: white;
+}
+
 .panel-table tr:hover td {
   background-color: rgba(51, 122, 183, 0);
 }
