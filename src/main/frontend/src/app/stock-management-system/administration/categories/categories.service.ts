@@ -22,7 +22,7 @@ export class CategoriesService {
   }
 
   update(category: Category) {
-    return this.http.put(this.categoriesUrl, JSON.stringify(category), {headers: this.headers});
+    return this.http.put(this.categoriesUrl, category, {headers: this.headers});
   }
 
   delete(category: Category) {

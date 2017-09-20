@@ -34,6 +34,7 @@ public class CategoryRepository implements Repository<Category> {
             System.out.println("Saved Category {" + item.getId() + " " + item.getName() + "}.");
         } catch (HibernateException ex) {
             System.out.println("Failed to save Category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
+            ex.printStackTrace();
             throw ex;
         } finally {
             session.close();
@@ -58,16 +59,18 @@ public class CategoryRepository implements Repository<Category> {
     }
 
     @Override
-    public void update(Category item) {
+    public void update(Category item) throws Exception {
         Session session = sessionFactory.openSession();
         try {
             session.update(item);
+            session.flush();
+            System.out.println("Updated Category {" + item.getId() + " " + item.getName() + "}.");
         } catch (HibernateException ex) {
             ex.printStackTrace();
+            throw ex;
         } finally {
             session.close();
         }
-//        return null;
     }
 
     @Override

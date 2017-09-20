@@ -27,6 +27,7 @@ public class CategoryController {
         try {
             return new ResponseEntity<>(categoryRepository.query(null), HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -37,24 +38,23 @@ public class CategoryController {
             categoryRepository.add(category);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (CategoryNameAlreadyInUseException e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @RequestMapping(method = PUT)
-    public ResponseEntity<?> update(Category category) {
-        Category returnedCategory = null;
+    public ResponseEntity<?> update(@RequestBody Category category) {
         try {
             categoryRepository.update(category);
-        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if (returnedCategory == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(returnedCategory, HttpStatus.OK);
     }
 
     @RequestMapping(method = DELETE)
@@ -62,7 +62,8 @@ public class CategoryController {
         try {
             categoryRepository.remove(category);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception ex) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
