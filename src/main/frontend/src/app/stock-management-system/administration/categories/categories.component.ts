@@ -67,8 +67,7 @@ export class CategoriesComponent implements OnInit {
   delete(category: Category) {
     this.categoriesService.delete(category).subscribe(
       data => {
-        console.log("Updated category");
-        this.category = new Category();
+        console.log("Deleted category");
         this.getCategories();
       },
       error => {
@@ -79,5 +78,6 @@ export class CategoriesComponent implements OnInit {
 
   selectCategory(category: Category) {
     this.category = category;
+    this.createMode = false;
   }
 }

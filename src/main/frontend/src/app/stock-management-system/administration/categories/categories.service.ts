@@ -26,6 +26,6 @@ export class CategoriesService {
   }
 
   delete(category: Category) {
-    return this.http.delete(this.categoriesUrl, {headers: this.headers});
+    return this.http.delete(this.categoriesUrl, {headers: this.headers, body: category});
   }
 }

@@ -58,7 +58,7 @@ public class CategoryController {
     }
 
     @RequestMapping(method = DELETE)
-    public ResponseEntity<?> delete(Category category) {
+    public ResponseEntity<?> delete(@RequestBody Category category) {
         try {
             categoryRepository.remove(category);
             return new ResponseEntity<>(HttpStatus.OK);

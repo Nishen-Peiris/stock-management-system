@@ -9,7 +9,8 @@
             <form>
               <div class="panel panel-info">
                 <div class="panel-heading">
-                  <b>Add categories</b>
+                  <b [hidden]="!createMode">Add category</b>
+                  <b [hidden]="createMode">Edit category</b>
                 </div>
                 <div class="panel-body">
                   <div class="col-sm-12">
@@ -32,9 +33,14 @@
                     </table>
                   </div>
                   <div class="form-group ">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" [hidden]="!createMode">
                       <button (click)="add(category)" class="btn btn-success update-job pull-right col-sm-1"><i
-                        class="fa fa-floppy-o" style="padding-right: 8px"></i><b>Save</b>
+                        class="fa fa-floppy-o" style="padding-right: 8px"></i><b>Add</b>
+                      </button>
+                    </div>
+                    <div class="col-sm-12" [hidden]="createMode">
+                      <button (click)="edit(category)" class="btn btn-success update-job pull-right col-sm-1"><i
+                        class="fa fa-pencil-square-o" style="padding-right: 8px"></i><b>Edit</b>
                       </button>
                     </div>
                   </div>
@@ -56,8 +62,9 @@
               <tbody style="background-color: white">
               <tr *ngFor="let category of mf.data">
                 <td>
-                  <i style="padding-right: 15px" class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  <i style="padding-right: 15px" class="fa fa-pencil-square-o" aria-hidden="true"
+                     (click)="selectCategory(category)"></i>
+                  <i class="fa fa-trash" aria-hidden="true" (click)="delete(category)"></i>
                 </td>
                 <td>{{category.name}}</td>
               </tr>

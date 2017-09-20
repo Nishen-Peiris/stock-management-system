@@ -41,12 +41,17 @@ public class CategoryRepository implements Repository<Category> {
     }
 
     @Override
-    public void remove(Category item) {
+    public void remove(Category item) throws Exception {
         Session session = sessionFactory.openSession();
         try {
-            session.delete(item);
-        } catch (HibernateException ex) {
+            Category category = (Category) session.merge(item);
+            session.delete(category);
+            session.flush();
+            System.out.println("Deleted Category {" + item.getId() + " " + item.getName() + "}.");
+        } catch (Exception ex) {
+            System.out.println("Failed to delete Category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
             ex.printStackTrace();
+            throw ex;
         } finally {
             session.close();
         }
