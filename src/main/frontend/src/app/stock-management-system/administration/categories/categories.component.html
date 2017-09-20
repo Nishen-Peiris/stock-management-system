@@ -2,7 +2,7 @@
      style="background-color: transparent; padding-bottom: 0px !important; margin-bottom: 0px !important;">
   <div class="row">
     <div class="row">
-      <div id="main-container-team" class="col-sm-12">
+      <div id="main-container-categories" class="col-sm-12">
         <div class="col-sm-12">
           <div class="col-sm-12" style="padding-bottom: 50px">
             <!-------------------- Add categories form -------------------->
@@ -41,6 +41,21 @@
                 </div>
               </div>
             </form>
+            <!-------------------- Date table -------------------->
+            <table class="table table-striped" [mfData]="categories" #mf="mfDataTable" [mfRowsOnPage]="10">
+              <thead>
+              <tr>
+                <th>
+                  <mfDefaultSorter by="name">Category name</mfDefaultSorter>
+                </th>
+              </tr>
+              </thead>
+              <tbody style="background-color: white">
+              <tr *ngFor="let category of mf.data">
+                <td>{{category.name}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

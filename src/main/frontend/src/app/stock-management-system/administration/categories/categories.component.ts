@@ -18,7 +18,17 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.createMode = true;
     this.category = new Category();
+    this.categories = new Array();
     // this.getCategories();
+    let category0 = new Category();
+    let category1 = new Category();
+    let category2 = new Category();
+    category0.name = "ASDASDASD";
+    category1.name = "QWEQWEQWE";
+    category2.name = "ZXCZXCZXC";
+    this.categories[0] = category0;
+    this.categories[1] = category1;
+    this.categories[2] = category2;
   }
 
   getCategories() {

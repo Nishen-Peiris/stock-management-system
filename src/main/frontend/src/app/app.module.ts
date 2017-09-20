@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {DataTableModule} from 'angular2-datatable';
 
 import {AppComponent} from './app.component';
 import {UsersComponent} from './stock-management-system/administration/users/users.component';
@@ -17,7 +18,7 @@ import {AppRoutingModule} from './app-routing.module';
     AppComponent, UsersComponent, ProductsComponent, CategoriesComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, FormsModule, HttpModule
+    BrowserModule, AppRoutingModule, FormsModule, HttpModule, DataTableModule
   ],
   providers: [CategoriesService],
   bootstrap: [AppComponent]
