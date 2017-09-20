@@ -13,38 +13,19 @@ export class CategoriesService {
 
   }
 
-  getCategories(): Promise<Category[]> {
-    return this.http.get(this.categoriesUrl)
-      .toPromise()
-      .then(response => response.json().data as Category[])
-      .catch(this.handleError);
+  getCategories() {
+    return this.http.get(this.categoriesUrl);
   }
 
-  create(category: Category): Promise<Category> {
-    return this.http
-      .post(this.categoriesUrl, category, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+  create(category: Category) {
+    return this.http.post(this.categoriesUrl, category, {headers: this.headers});
   }
 
-  update(category: Category): Promise<Category> {
-    return this.http
-      .put(this.categoriesUrl, JSON.stringify(category), {headers: this.headers})
-      .toPromise()
-      .then(() => category)
-      .catch(this.handleError);
+  update(category: Category) {
+    return this.http.put(this.categoriesUrl, JSON.stringify(category), {headers: this.headers});
   }
 
-  delete(category: Category): Promise<void> {
-    return this.http.delete(this.categoriesUrl, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  delete(category: Category) {
+    return this.http.delete(this.categoriesUrl, {headers: this.headers});
   }
 }

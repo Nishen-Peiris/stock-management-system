@@ -32,44 +32,50 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoriesService
-      .getCategories()
-      .then(categories => this.categories = categories)
-      .catch();
+    this.categoriesService.getCategories().subscribe(
+      data => {
+      },
+      error => {
+      }
+    );
   }
 
   add(category: Category) {
-    this.categoriesService.create(category)
-      .then(this.onAddSuccess)
-      .catch(this.onAddFailure);
+    this.categoriesService.create(this.category).subscribe(
+      data => {
+        console.log("Saved category");
+        this.category = new Category();
+      },
+      error => {
+        const status = error.status.toString();
+        if (status === "409") {
+          console.log("A category exists with the same name. Please use a different name.");
+        } else {
+          console.log("Internal server error occurred while processing your request. Please try again later.");
+        }
+      }
+    );
   }
 
   edit(category: Category) {
-    this.categoriesService.update(category)
-      .then(this.getCategories)
-      .catch();
+    this.categoriesService.update(category).subscribe(
+      data => {
+      },
+      error => {
+      }
+    );
   }
 
   delete(category: Category) {
-    this.categoriesService.delete(category)
-      .then(this.getCategories)
-      .catch();
+    this.categoriesService.delete(category).subscribe(
+      data => {
+      },
+      error => {
+      }
+    );
   }
 
   selectCategory(category: Category) {
     this.category = category;
-  }
-
-  private onAddSuccess() {
-    console.log("Saved category");
-  }
-
-  private onAddFailure(error: any) {
-    const status = error.status.toString();
-    if (status === "409") {
-      console.log("A category exists with the same name. Please use a different name.");
-    } else {
-      console.log("Internal server error occurred while processing your request. Please try again later.");
-    }
   }
 }
