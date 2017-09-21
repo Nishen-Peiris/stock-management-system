@@ -10,6 +10,7 @@ import {ProductsComponent} from './stock-management-system/administration/produc
 import {CategoriesComponent} from './stock-management-system/administration/categories/categories.component';
 
 import {CategoriesService} from './stock-management-system/administration/categories/categories.service';
+import {ProductsService} from './stock-management-system/administration/products/products.service';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -20,7 +21,7 @@ import {AppRoutingModule} from './app-routing.module';
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, HttpModule, DataTableModule
   ],
-  providers: [CategoriesService],
+  providers: [CategoriesService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
