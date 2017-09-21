@@ -1,13 +1,12 @@
 package com.nishenpeiris.StockManagementSystem;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Product extends AbstractEntity {
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Category category;
     private boolean reusable;
 

@@ -66,6 +66,7 @@ public class ProductRepository implements Repository<Product> {
             session.flush();
             System.out.println("Updated product {" + product.getId() + " " + product.getName() + "}.");
         } catch (HibernateException ex) {
+            System.out.println("Failed to update category {" + product.getId() + " " + product.getName() + "}.");
             ex.printStackTrace();
             throw ex;
         } finally {

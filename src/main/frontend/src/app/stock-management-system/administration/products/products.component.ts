@@ -13,9 +13,8 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   categories: Category[];
   product: Product;
-  category: Category;
   rowsOnPage = 10;
-  sortBy = "name";
+  sortBy = "product";
   sortOrder = "asc";
 
   constructor(private productsService: ProductsService, private categoriesService: CategoriesService) {
@@ -25,7 +24,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.createMode = true;
     this.product = new Product();
-    this.category = new Category();
     this.products = new Array();
     this.categories = new Array();
     this.getCategories();
@@ -43,9 +41,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  add(category: Category) {
-    console.log(this.product)
-    console.log(category)
+  add() {
     this.productsService.create(this.product).subscribe(
       data => {
         console.log("Saved product");
@@ -88,7 +84,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  selectCategory(product: Product) {
+  selectProduct(product: Product) {
     this.product = product;
     this.createMode = false;
   }
@@ -102,5 +98,13 @@ export class ProductsComponent implements OnInit {
         console.log("Failed to receive the list of categories. Please try again later.");
       }
     );
+  }
+
+  onChangeCategory(id: number) {
+    for (var i = 0; i < this.categories.length; i++) {
+      if (id == this.categories[i].id) {
+        this.product.category = this.categories[i];
+      }
+    }
   }
 }

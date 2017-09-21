@@ -9,8 +9,8 @@
             <form>
               <div class="panel panel-info">
                 <div class="panel-heading">
-                  <b [hidden]="!createMode">Add category</b>
-                  <b [hidden]="createMode">Edit category</b>
+                  <b [hidden]="!createMode">Add product</b>
+                  <b [hidden]="createMode">Edit product</b>
                 </div>
                 <div class="panel-body">
                   <div class="col-sm-12">
@@ -18,24 +18,26 @@
                       <tr>
                         <td style="border-top: none; width: 30%">
                           <div>
-                            <h5><b>Category:</b></h5>
-                          </div>
-                          <div>
-                            <select [(ngModel)]="category" name="productCategories"
-                                    style="width: 100%; height: 35px"
-                                    required="required">
-                              <option *ngFor="let category of categories">{{category.name}}</option>
-                            </select>
-                          </div>
-                        </td>
-                        <td style="width: 5%; border-top: none"></td>
-                        <td style="border-top: none; width: 30%">
-                          <div>
                             <h5><b>Cath - lab item:</b></h5>
                           </div>
                           <div>
                             <input type="text" class="form-control" [(ngModel)]="product.name" name="name"
                                    required="required">
+                          </div>
+                        </td>
+                        <td style="width: 5%; border-top: none"></td>
+                        <td style="border-top: none; width: 30%">
+                          <div>
+                            <h5><b>Category:</b></h5>
+                          </div>
+                          <div>
+                            <select [(ngModel)]="product.category" (change)="onChangeCategory($event.target.value)"
+                                    name="productCategories"
+                                    style="width: 100%; height: 35px" required="required">
+                              <option *ngFor="let category of categories" [value]="category.id">
+                                {{category.name}}
+                              </option>
+                            </select>
                           </div>
                         </td>
                         <td style="width: 5%; border-top: none"></td>
@@ -50,7 +52,7 @@
                   </div>
                   <div class="form-group ">
                     <div class="col-sm-12" [hidden]="!createMode">
-                      <button (click)="add(category)" class="btn btn-success update-job pull-right col-sm-1"><i
+                      <button (click)="add()" class="btn btn-success update-job pull-right col-sm-1"><i
                         class="fa fa-floppy-o" style="padding-right: 8px"></i><b>Add</b>
                       </button>
                     </div>
@@ -63,6 +65,45 @@
                 </div>
               </div>
             </form>
+            <!-------------------- Date table -------------------->
+            <table class="table table-striped" #mf="mfDataTable" [mfData]="products" [mfRowsOnPage]="rowsOnPage"
+                   [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+              <tr>
+                <th width="75px">
+                  Actions
+                </th>
+                <th>
+                  <mfDefaultSorter by="name">Product</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="category.name">Category</mfDefaultSorter>
+                </th>
+                <th>
+                  <mfDefaultSorter by="reusable">Reusable</mfDefaultSorter>
+                </th>
+              </tr>
+              </thead>
+              <tbody style="background-color: white">
+              <tr *ngFor="let product of mf.data">
+                <td>
+                  <i style="padding-right: 15px" class="fa fa-pencil-square-o" aria-hidden="true"
+                     (click)="selectProduct(product)"></i>
+                  <i class="fa fa-trash" aria-hidden="true" (click)="delete(product)"></i>
+                </td>
+                <td>{{product.name}}</td>
+                <td>{{product.category.name}}</td>
+                <td>{{product.reusable}}</td>
+              </tr>
+              </tbody>
+              <tfoot style="background: white; padding-bottom: 0; padding-top: 0; text-align: center">
+              <tr>
+                <td colspan="4">
+                  <mfBootstrapPaginator [rowsOnPageSet]="rowsOnPage"></mfBootstrapPaginator>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
       </div>
