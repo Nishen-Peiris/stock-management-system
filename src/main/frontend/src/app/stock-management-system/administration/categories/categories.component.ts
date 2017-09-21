@@ -74,7 +74,12 @@ export class CategoriesComponent implements OnInit {
         this.getCategories();
       },
       error => {
-        console.log("Internal server error occurred while processing your request. Please try again later.");
+        const status = error.status.toString();
+        if (status === "400") {
+          console.log("There are one or more products associated with this category. First, remove those products and then try again.");
+        } else {
+          console.log("Internal server error occurred while processing your request. Please try again later.");
+        }
       }
     );
   }

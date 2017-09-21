@@ -3,6 +3,7 @@ package com.nishenpeiris.StockManagementSystem.controller;
 import com.nishenpeiris.StockManagementSystem.Category;
 import com.nishenpeiris.StockManagementSystem.CategoryNameAlreadyInUseException;
 import com.nishenpeiris.StockManagementSystem.repository.CategoryRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,6 +63,9 @@ public class CategoryController {
         try {
             categoryRepository.remove(category);
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (ConstraintViolationException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

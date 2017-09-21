@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,9 +32,9 @@ public class CategoryRepository implements Repository<Category> {
         }
         try {
             session.save(item);
-            System.out.println("Saved Category {" + item.getId() + " " + item.getName() + "}.");
+            System.out.println("Saved category {" + item.getId() + " " + item.getName() + "}.");
         } catch (HibernateException ex) {
-            System.out.println("Failed to save Category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
+            System.out.println("Failed to save category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
             ex.printStackTrace();
             throw ex;
         } finally {
@@ -48,9 +49,13 @@ public class CategoryRepository implements Repository<Category> {
             Category category = (Category) session.merge(item);
             session.delete(category);
             session.flush();
-            System.out.println("Deleted Category {" + item.getId() + " " + item.getName() + "}.");
+            System.out.println("Deleted category {" + item.getId() + " " + item.getName() + "}.");
+        } catch (ConstraintViolationException ex) {
+            System.out.println("Failed to delete category {" + item.getId() + " " + item.getName() + "}: ConstraintViolationException Exception");
+            ex.printStackTrace();
+            throw ex;
         } catch (Exception ex) {
-            System.out.println("Failed to delete Category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
+            System.out.println("Failed to delete category {" + item.getId() + " " + item.getName() + "}: Hibernate Exception");
             ex.printStackTrace();
             throw ex;
         } finally {
@@ -64,8 +69,9 @@ public class CategoryRepository implements Repository<Category> {
         try {
             session.update(item);
             session.flush();
-            System.out.println("Updated Category {" + item.getId() + " " + item.getName() + "}.");
+            System.out.println("Updated category {" + item.getId() + " " + item.getName() + "}.");
         } catch (HibernateException ex) {
+            System.out.println("Failed to update category {" + item.getId() + " " + item.getName() + "}.");
             ex.printStackTrace();
             throw ex;
         } finally {
