@@ -21,7 +21,7 @@
                             <h5><b>First Name:</b></h5>
                           </div>
                           <div>
-                            <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName"
+                            <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName"
                                    required="required">
                           </div>
                         </td>
@@ -31,7 +31,7 @@
                             <h5><b>Last Name:</b></h5>
                           </div>
                           <div>
-                            <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName"
+                            <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName"
                                    required="required">
                           </div>
                         </td>
@@ -41,7 +41,7 @@
                             <h5><b>Phone number:</b></h5>
                           </div>
                           <div>
-                            <input type="text" class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber"
+                            <input type="text" class="form-control" [(ngModel)]="user.phoneNumber" name="phoneNumber"
                                    required="required">
                           </div>
                         </td>
@@ -52,7 +52,7 @@
                             <h5><b>email:</b></h5>
                           </div>
                           <div>
-                            <input type="email" class="form-control" [(ngModel)]="email" name="email"
+                            <input type="email" class="form-control" [(ngModel)]="user.email" name="email"
                                    required="required">
                           </div>
                         </td>
@@ -75,9 +75,14 @@
                     </table>
                   </div>
                   <div class="form-group ">
-                    <div class="col-sm-12">
-                      <button class="btn btn-success update-job pull-right col-sm-1"><i
-                        class="fa fa-floppy-o" style="padding-right: 8px"></i><b>Save</b>
+                    <div class="col-sm-12" [hidden]="!createMode">
+                      <button (click)="add()" class="btn btn-success update-job pull-right col-sm-1"><i
+                        class="fa fa-floppy-o" style="padding-right: 8px"></i><b>Add</b>
+                      </button>
+                    </div>
+                    <div class="col-sm-12" [hidden]="createMode">
+                      <button (click)="edit()" class="btn btn-success update-job pull-right col-sm-1"><i
+                        class="fa fa-pencil-square-o" style="padding-right: 8px"></i><b>Edit</b>
                       </button>
                     </div>
                   </div>
@@ -93,7 +98,7 @@
                   Actions
                 </th>
                 <th>
-                  <mfDefaultSorter by="name">User name</mfDefaultSorter>
+                  <mfDefaultSorter by="firstName">User name</mfDefaultSorter>
                 </th>
                 <th>
                   <mfDefaultSorter by="phoneNumber">Phone number</mfDefaultSorter>
@@ -110,8 +115,8 @@
               <tr *ngFor="let user of mf.data">
                 <td>
                   <i style="padding-right: 15px" class="fa fa-pencil-square-o" aria-hidden="true"
-                     (click)="selectUser()"></i>
-                  <i class="fa fa-trash" aria-hidden="true" (click)="delete()"></i>
+                     (click)="selectUser(user)"></i>
+                  <i class="fa fa-trash" aria-hidden="true" (click)="delete(user)"></i>
                 </td>
                 <td>{{user.firstName}} {{user.lastName}}</td>
                 <td>{{user.phoneNumber}}</td>

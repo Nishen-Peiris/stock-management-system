@@ -9,8 +9,9 @@ import {UsersComponent} from './stock-management-system/administration/users/use
 import {ProductsComponent} from './stock-management-system/administration/products/products.component';
 import {CategoriesComponent} from './stock-management-system/administration/categories/categories.component';
 
-import {CategoriesService} from './stock-management-system/administration/categories/categories.service';
+import {UsersService} from './stock-management-system/administration/users/users.service';
 import {ProductsService} from './stock-management-system/administration/products/products.service';
+import {CategoriesService} from './stock-management-system/administration/categories/categories.service';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -21,7 +22,7 @@ import {AppRoutingModule} from './app-routing.module';
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, HttpModule, DataTableModule
   ],
-  providers: [CategoriesService, ProductsService],
+  providers: [UsersService, ProductsService, CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
