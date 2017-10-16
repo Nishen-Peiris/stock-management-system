@@ -2,6 +2,7 @@ package com.nishenpeiris.StockManagementSystem.controller;
 
 import com.nishenpeiris.StockManagementSystem.InactiveUser;
 import com.nishenpeiris.StockManagementSystem.repository.UserRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,9 @@ public class UserController {
         try {
             userRepository.add(user);
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (ConstraintViolationException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

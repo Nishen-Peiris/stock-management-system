@@ -30,7 +30,6 @@ public class UserRepository implements Repository<User> {
             System.out.println("Saved user {" + user.getId() + " " + user.getEmail() + "}.");
         } catch (HibernateException ex) {
             System.out.println("Failed to save user {" + user.getId() + " " + user.getEmail() + "}: Hibernate Exception");
-            ex.printStackTrace();
             throw ex;
         } finally {
             session.close();
