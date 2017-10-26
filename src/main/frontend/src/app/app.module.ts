@@ -5,6 +5,7 @@ import {HttpModule} from '@angular/http';
 import {DataTableModule} from 'angular2-datatable';
 
 import {AppComponent} from './app.component';
+import {HomeComponent} from "./stock-management-system/administration/home/home.component";
 import {UsersComponent} from './stock-management-system/administration/users/users.component';
 import {ProductsComponent} from './stock-management-system/administration/products/products.component';
 import {CategoriesComponent} from './stock-management-system/administration/categories/categories.component';
@@ -17,7 +18,7 @@ import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent, UsersComponent, ProductsComponent, CategoriesComponent
+    AppComponent, HomeComponent, UsersComponent, ProductsComponent, CategoriesComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, HttpModule, DataTableModule
